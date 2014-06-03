@@ -37,53 +37,54 @@ exports.searchAuctions = function(req, res){
     
     var $ = cheerio.load(html);
     
-    var pushAuctions = function(auction){
-      auctionsArray.push(auction);
-      if(auctionsArray.length == 25) {
-        res.send(auctionsArray);        
-      }
-    };
+    res.send("inside ScrapeItems");
+
+
+    // var pushAuctions = function(auction){
+    //   auctionsArray.push(auction);
+    //   if(auctionsArray.length == 25) {
+    //     res.send(auctionsArray);        
+    //   }
+    // };
 
     // get a cheerio object array of the table rows
-    var itemRows = $('table.productresults tbody').first().children('tr');
+    //var itemRows = $('table.productresults tbody').first().children('tr');
 
     // iterate over rows and pull out available data
-    if(itemRows.length > 1) {
-      itemRows.each(function(i, el){
-        var auction = {};
-        var itemTH = $(el).children('th');
-        // the unique auction number
-        auction.itemNumber = itemTH.eq(0).html().trim();
-        // the auction name
-        // console.log(auction.itemNumber);
-        auction.itemName = itemTH.eq(1).children('a').html();
-        // remove any line breaks from auction name
-        auction.itemName = auction.itemName.replace(/(\r\n|\n|\r)/gm,"");
-        // the auction show url
-        // console.log(auction.itemName);
-        auction.itemURL = itemTH.eq(1).children('a').attr('href');
-        // the small thumbnail
-        // console.log(auction.itemURL);
-        auction.itemImage = itemTH.eq(1).children('img').attr('src');
-        // the Larger image URL
-        auction.itemImage = auction.itemImage.replace("-thumb","");
-        // the Current price
-        // console.log(auction.itemImage);
-        auction.itemPrice = itemTH.eq(2).find('b').html();
-        // strip out the $ so it validates as a number
-        auction.itemPrice = auction.itemPrice.replace("$","");
-        // console.log(auction.itemPrice);
-        // the number of bids
-        auction.itemBids = itemTH.eq(3).html();
-        // console.log(auction.itemBids);
-        // the end time in words ... useless
-        auction.itemEnd = itemTH.eq(4).find('font').html();
-        // console.log(auction.itemEnd);
-        pushAuctions(auction);
-        // auctionsArray.push(auction);
-      });
-    } else {
-      res.send("no itemRows");
+    // if(itemRows.length > 1) {
+    //   itemRows.each(function(i, el){
+    //     var auction = {};
+    //     var itemTH = $(el).children('th');
+    //     // the unique auction number
+    //     auction.itemNumber = itemTH.eq(0).html().trim();
+    //     // the auction name
+    //     // console.log(auction.itemNumber);
+    //     auction.itemName = itemTH.eq(1).children('a').html();
+    //     // remove any line breaks from auction name
+    //     auction.itemName = auction.itemName.replace(/(\r\n|\n|\r)/gm,"");
+    //     // the auction show url
+    //     // console.log(auction.itemName);
+    //     auction.itemURL = itemTH.eq(1).children('a').attr('href');
+    //     // the small thumbnail
+    //     // console.log(auction.itemURL);
+    //     auction.itemImage = itemTH.eq(1).children('img').attr('src');
+    //     // the Larger image URL
+    //     auction.itemImage = auction.itemImage.replace("-thumb","");
+    //     // the Current price
+    //     // console.log(auction.itemImage);
+    //     auction.itemPrice = itemTH.eq(2).find('b').html();
+    //     // strip out the $ so it validates as a number
+    //     auction.itemPrice = auction.itemPrice.replace("$","");
+    //     // console.log(auction.itemPrice);
+    //     // the number of bids
+    //     auction.itemBids = itemTH.eq(3).html();
+    //     // console.log(auction.itemBids);
+    //     // the end time in words ... useless
+    //     auction.itemEnd = itemTH.eq(4).find('font').html();
+    //     // console.log(auction.itemEnd);
+    //     pushAuctions(auction);
+    //     // auctionsArray.push(auction);
+    //   });
     }
   };  
   
