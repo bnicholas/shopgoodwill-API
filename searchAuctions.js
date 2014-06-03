@@ -96,6 +96,8 @@ exports.searchAuctions = function(req, res){
     };
   };  
 
-  request(url.full, tidyPage);
+  request(url.full, function(error, response, body) {
+    res.send(body)
+  });
 
 };
