@@ -87,10 +87,10 @@ exports.searchAuctions = function(req, res){
   };  
   
   var tidyPage = function(error, response, body) {
-    if (!error && response.statusCode == 200) {
-      tidy(body, function(error, html){
+    if (!error) {
+      tidy(body, function(err, html){
         // good up to here what the fuck breaks inside scrapeItems is beyond me.
-        res.send("HELLO");
+        res.send(html);
         //scrapeItems(html);
       });
     };
