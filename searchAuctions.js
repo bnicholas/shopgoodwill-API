@@ -85,7 +85,7 @@ exports.searchAuctions = function(req, res){
     //     pushAuctions(auction);
     //     // auctionsArray.push(auction);
     //   });
-    }
+    // }
   };  
   
   var tidyPage = function(error, response, body) {
