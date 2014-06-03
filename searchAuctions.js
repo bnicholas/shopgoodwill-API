@@ -97,13 +97,9 @@ exports.searchAuctions = function(req, res){
   };  
 
   request(url.full, function(error, response, body) {
-    tidy(body, function(err, html){
-      if(err) {
-        res.send(err);  
-      } else {
-        res.send(html);
-      }
-    });
+    if(!error) { 
+      res.send(body);
+    }
   });
 
 };
