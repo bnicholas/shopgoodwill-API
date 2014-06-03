@@ -34,7 +34,8 @@ exports.searchAuctions = function(req, res){
   
   var scrapeItems = function(html) {
     var auctionsArray = [];
-    var bQuery = cheerio.load(html);
+    
+    var $ = cheerio.load(html);
     
     var pushAuctions = function(auction){
       auctionsArray.push(auction);
@@ -44,13 +45,13 @@ exports.searchAuctions = function(req, res){
     };
 
     // get a cheerio object array of the table rows
-    var itemRows = bQuery('table.productresults tbody').first().children('tr');
+    var itemRows = $('table.productresults tbody').first().children('tr');
 
     // iterate over rows and pull out available data
     if(itemRows.length > 1) {
       itemRows.each(function(i, el){
         var auction = {};
-        var itemTH = bQuery(el).children('th');
+        var itemTH = $(el).children('th');
         // the unique auction number
         auction.itemNumber = itemTH.eq(0).html().trim();
         // the auction name
