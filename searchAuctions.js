@@ -37,8 +37,6 @@ exports.searchAuctions = function(req, res){
     
     // var $ = cheerio.load(html);
     
-    res.send(html);
-
 
     // var pushAuctions = function(auction){
     //   auctionsArray.push(auction);
@@ -92,7 +90,8 @@ exports.searchAuctions = function(req, res){
     if (!error && response.statusCode == 200) {
       tidy(body, function(error, html){
         // good up to here what the fuck breaks inside scrapeItems is beyond me.
-        scrapeItems(html);
+        res.send(html);
+        //scrapeItems(html);
       });
     };
   };  
