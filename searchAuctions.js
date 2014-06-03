@@ -98,7 +98,13 @@ exports.searchAuctions = function(req, res){
 
   request(url.full, function(error, response, body) {
     if(!error) { 
-      res.send(body);
+      // I can send the body
+      // res.send(body);
+      tidy(body, function(err, html){
+        if(!err) {
+          res.send(html);
+        }
+      });
     }
   });
 
