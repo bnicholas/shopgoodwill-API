@@ -97,7 +97,11 @@ exports.searchAuctions = function(req, res){
   };  
 
   request(url.full, function(error, response, body) {
-    res.send(body)
+    tidy(body, function(err, html){
+      // good up to here what the fuck breaks inside scrapeItems is beyond me.
+      res.send(html);
+      //scrapeItems(html);
+    });
   });
 
 };
