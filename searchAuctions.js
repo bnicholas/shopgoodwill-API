@@ -35,7 +35,7 @@ exports.searchAuctions = function(req, res){
   var scrapeItems = function(html) {
     var auctionsArray = [];
     
-    var $ = cheerio.load(html);
+    // var $ = cheerio.load(html);
     
     res.send("inside ScrapeItems");
 
