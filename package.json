@@ -9,7 +9,6 @@
     "node": "0.10.28",
     "npm": "1.4.13"
   },
-  "main": "api.js",
   "dependencies": {
     "cheerio": "^0.15.0",
     "consolidate": "^0.10.0",
