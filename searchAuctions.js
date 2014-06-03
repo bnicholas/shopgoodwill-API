@@ -33,11 +33,11 @@ exports.searchAuctions = function(req, res){
   }
   
   var scrapeItems = function(html) {
-    var auctionsArray = [];
+    // var auctionsArray = [];
     
     // var $ = cheerio.load(html);
     
-    res.send("inside ScrapeItems");
+    res.send(html);
 
 
     // var pushAuctions = function(auction){
