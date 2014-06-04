@@ -1,3 +1,0 @@
-nodejs http://jorgen.evens.eu/heroku/nodejs/nodejs.sh 4d650ed131c634b6b417cddc3f1b5018 # Provides a node installing, including npm
-libtidy http://jorgen.evens.eu/heroku/libtidy/libtidy.sh 3f6c8928c9ebd2f3262ff7b402fbdd9b
-geoip http://jorgen.evens.eu/heroku/geoip/geoip.sh 064edb2d52fbe3ac778809ff27e95f93 # Provides MaxMind GeoIP tools and database
