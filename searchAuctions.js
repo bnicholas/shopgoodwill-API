@@ -102,7 +102,9 @@ exports.searchAuctions = function(req, res){
 
   request(url.full, function(error, response, body) {
     if(!error) {
-      res.send(body);
+      console.log(body);
+      
+      res.send("Now lets find out what's wrong with the spawning of the childprocess tidy");
     
       tidy(body, function(err, html){
         console.log(html);
