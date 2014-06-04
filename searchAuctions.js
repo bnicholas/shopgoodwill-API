@@ -2,13 +2,12 @@ var cheerio = require('cheerio');
 var request = require('request');
 var tidy    = require('htmltidy').tidy;
 
-
 exports.searchAuctions = function(req, res){
+  var tidyPage;
   var queryCat = 7;
   var querySeller = 12;
   var queryPage = 1;
-  var html;
-  
+
   if(req.query.page) {
     queryPage = req.query.page;
   };
@@ -88,23 +87,25 @@ exports.searchAuctions = function(req, res){
     // }
   };  
   
-  var tidyPage = function(error, response, body) {
-    if (error) { 
-      console.log(error); 
-      return; 
-    }
-    else {
-      tidy(body, function(err, markup) {
-        if(err){ 
-          console.log(err); 
-          return; 
-        } else { 
-          res.send(markup);
-        }
-      });
-    }
-  };
+  // tidyPage = function(body) {
+  //   tidy(body, function(err, markup) {
+  //       if(err){ 
+  //         console.log(err); 
+  //         return; 
+  //       } else { 
+  //         console.log("yay!");
+  //         res.send("WOW");
+  //       }
+  //     });
+  //   }
+  // };
 
-  request(url.full, tidyPage);
+  request(url.full, function(error, response, body) {
+    if(!error) {
+      tidy(body, function(error, html){
+        res.send(html);
+      });
+    };
+  });
 
 };
