@@ -4,7 +4,9 @@ var app     = express();
 var port    = process.env.PORT || 5000;
 var os      = require('os');
 
-console.log(os.release());
+console.log("os.platform "+os.platform());
+console.log("os.type "+os.type());
+console.log("os.release "+os.release());
 
 
 app.listen(port, function() { console.log("Listening on " + port) });
