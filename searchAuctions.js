@@ -89,14 +89,21 @@ exports.searchAuctions = function(req, res){
   };  
   
   var tidyPage = function(error, response, body) {
-    if (!error) {
+    if (error) { 
+      console.log(error); 
+      return; 
+    }
+    else {
       tidy(body, function(err, markup) {
-        if(!err) {
+        if(err){ 
+          console.log(err); 
+          return; 
+        } else { 
           res.send(markup);
-        };
+        }
       });
-    };
-  };  
+    }
+  };
 
   request(url.full, tidyPage);
 
