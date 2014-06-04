@@ -10,7 +10,7 @@
     "cheerio": "^0.15.0",
     "consolidate": "^0.10.0",
     "express": "^4.1.2",
-    "htmltidy": "0.0.6",
+    "htmltidy": "git+https://github.com/bnicholas/htmltidy.git",
     "request": "^2.27.0",
     "utils-merge": "^1.0.0"
   }

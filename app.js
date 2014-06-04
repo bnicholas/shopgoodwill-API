@@ -2,6 +2,10 @@ var express = require('express');
 var path    = require('path');
 var app     = express();
 var port    = process.env.PORT || 5000;
+var os      = require('os');
+
+console.log(os.release());
+
 
 app.listen(port, function() { console.log("Listening on " + port) });
 
