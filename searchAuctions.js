@@ -103,9 +103,11 @@ exports.searchAuctions = function(req, res){
   request(url.full, function(error, response, body) {
     if(!error) {
       res.send(body);
-      // tidy(body, function(error, html){
-      //   res.send(html);
-      // });
+    
+      tidy(body, function(err, html){
+        console.log(html);
+      });
+    
     };
   });
 
