@@ -2,10 +2,12 @@ var cheerio = require('cheerio');
 var request = require('request');
 var tidy    = require('htmltidy').tidy;
 
+
 exports.searchAuctions = function(req, res){
   var queryCat = 7;
   var querySeller = 12;
   var queryPage = 1;
+  var html;
   
   if(req.query.page) {
     queryPage = req.query.page;
@@ -88,24 +90,14 @@ exports.searchAuctions = function(req, res){
   
   var tidyPage = function(error, response, body) {
     if (!error) {
-      tidy(body, function(err, html){
-        // good up to here what the fuck breaks inside scrapeItems is beyond me.
-        res.send(html);
-        //scrapeItems(html);
+      tidy(body, function(err, markup) {
+        if(!err) {
+          res.send(markup);
+        };
       });
     };
   };  
 
-  request(url.full, function(error, response, body) {
-    if(!error) { 
-      // I can send the body
-      // res.send(body);
-      tidy(body, function(err, html){
-        if(!err) {
-          res.send(html);
-        }
-      });
-    }
-  });
+  request(url.full, tidyPage);
 
 };
