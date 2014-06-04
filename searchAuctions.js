@@ -102,9 +102,10 @@ exports.searchAuctions = function(req, res){
 
   request(url.full, function(error, response, body) {
     if(!error) {
-      tidy(body, function(error, html){
-        res.send(html);
-      });
+      res.send(body);
+      // tidy(body, function(error, html){
+      //   res.send(html);
+      // });
     };
   });
 
