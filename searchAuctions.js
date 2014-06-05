@@ -11,11 +11,9 @@ exports.searchAuctions = function(req, res){
   if(req.query.page) {
     queryPage = req.query.page;
   };
-
-  if(req.query.cat) {
+  if(req.query.cat) { 
     queryCat = req.query.cat;
   };
-
   if(req.query.seller) {
     querySeller = req.query.seller;
   };
@@ -31,14 +29,12 @@ exports.searchAuctions = function(req, res){
     get full () {
       return this.base+'itemTitle='+this.title+'&catid='+this.cat+'&sellerID='+this.seller+'&page='+this.page;
     }  
-  }
+  };
   
-  var scrapeItems = function(clean) {
+  var scrapeItems = function(html) {
     var auctionsArray = [];
     
-    console.log('scrapeItems');
-    
-    var $ = cheerio.load(clean);
+    var $ = cheerio.load(html);
     
     // get a cheerio object array of the table rows
     var itemRows = $('table.productresults tbody').first().children('tr');
@@ -80,31 +76,27 @@ exports.searchAuctions = function(req, res){
       });
       res.send(auctionsArray);
     } else {
-      res.send(clean);
+      res.send("looks like this isn't a real page. I mean don't get me wrong. It's there, but there's no table on the page.");
     }
   };  
   
-  // tidyPage = function(body) {
-  //   tidy(body, function(err, markup) {
-  //       if(err){ 
-  //         console.log(err); 
-  //         return; 
-  //       } else { 
-  //         console.log("yay!");
-  //         res.send("WOW");
-  //       }
-  //     });
-  //   }
-  // };
-
+  tidyPage = function(body) {
+    tidy(body, function(err, html) {
+      if(err){  
+        res.send(err);
+        return; 
+      } else { 
+        scrapeItems(html);
+      }
+    });
+  };
+  
   request(url.full, function(error, response, body) {
-    if(!error) {
-      
-      tidy('<div>hello</div>', function(err, html) {
-        console.log(html);
-      });
-    
-    };
+    if(error) {
+      res.send(error);
+    } else {
+      tidyPage(body);
+    }
   });
 
-};
+}
