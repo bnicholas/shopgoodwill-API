@@ -4,7 +4,7 @@ var tidy = require('htmltidy').tidy;
 
 exports.searchAuctions = function(req, res){
   var tidyPage;
-  var queryCat = 7;
+  var queryCat = 0;
   var querySeller = 12;
   var queryPage = 1;
 
