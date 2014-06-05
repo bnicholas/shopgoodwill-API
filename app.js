@@ -11,9 +11,9 @@ console.log("os.release "+os.release());
 
 app.listen(port, function() { console.log("Listening on " + port) });
 
-var getOptions = require('./searchOptions.js');
+// var getOptions = require('./searchOptions.js');
 var getAuctions = require('./searchAuctions.js');
-app.get('/options', getOptions.searchOptions);
+// app.get('/options', getOptions.searchOptions);
 app.get('/search', getAuctions.searchAuctions);
 
 console.log("HEY HEY HEY HEY HEY HEY HEY HEY HEY HEY HEY HEY HEY HEY HEY");

@@ -1,6 +1,6 @@
 var cheerio = require('cheerio');
 var request = require('request');
-var tidy    = require('htmltidy').tidy;
+
 var searchUrl = "http://www.shopgoodwill.com/search/";
 
 exports.searchOptions = function(req, res){
