@@ -100,11 +100,6 @@ exports.searchAuctions = function(req, res){
   request(url.full, function(error, response, body) {
     if(!error) {
       
-      // res.send("Now lets find out what's wrong with the spawning of the childprocess tidy");
-      var clean = sanitizeHtml(body, {
-        allowedTags: sanitizeHtml.defaults.allowedTags.concat([ 'img' ])
-      });
-      
       tidy('<div>hello</div>', function(err, html) {
         console.log(html);
       });
