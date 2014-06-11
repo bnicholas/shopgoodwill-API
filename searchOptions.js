@@ -4,18 +4,15 @@ var tidy = require('htmltidy').tidy;
 var searchUrl = "http://www.shopgoodwill.com/search/";
 
 exports.searchOptions = function(req, res){
+  
   var results = {};
+  
   var optionsObj = { categories: [], sellers: [] };
   
   request(searchUrl, function(err, resp, body) {
-    if(err) {
-      res.send(err);
-    } 
-    else {
+    if(!err) {
       tidy(body, function(error, html){
-        if(error) {
-          res.send(error);
-        } else {
+        if(!error) {
           getOptions(html);  
         }
       });
@@ -31,7 +28,7 @@ exports.searchOptions = function(req, res){
       var catName = $(el).html();
       var catID = $(el).val();
       if(catName.indexOf("&gt;") < 0) {
-        optionsObj.categories.push({name : catName, id: catID});  
+        optionsObj.categories.push({name : catName, id : catID});  
       };
     });
     
@@ -41,9 +38,11 @@ exports.searchOptions = function(req, res){
       sellerName = sellerName.slice(0, 2);
       sellerName = sellerName.join(" ");
       var sellerID = $(el).val();
-      optionsObj.sellers.push({name : sellerName, id: sellerID});
+      optionsObj.sellers.push({name : sellerName, id : sellerID});
     });
-    res.send(optionsObj);
+    var optionsJSON = JSON.stringify(optionsObj);
+    res.jsonp(optionsObj);
+
   };
 
 };
