@@ -1,4 +1,5 @@
 # shopgooderwill
+
 ### the unofficial API for gettin me some JSON
 
 I love shopgoodwill.com ... I just hate browsing the site. So I'm goofing around and making a better way to do just that.
@@ -59,3 +60,9 @@ this will give you Sellers and Categories ... but with a little less brain damag
       ]
     
     }
+
+##### NOTES
+
+heroku config:add PATH=vendor/tidy/bin:vendor/tidy/lib:/usr/bin:/bin
+
+heroku config:add LD_LIBRARY_PATH=vendor/tidy/lib
