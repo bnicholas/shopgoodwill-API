@@ -40,20 +40,20 @@ exports.searchAuctions = function(req, res){
   var scrapeItems = function(html) {
     var auctionsArray = [];
     
-    console.log("Parsing Markup");
+    // console.log("Parsing Markup");
     
     var $ = cheerio.load(html);
     
     // get a cheerio object array of the table rows
     var itemRows = $('table.productresults tbody').first().children('tr');
 
-    console.log(itemRows.length);
+    // console.log(itemRows.length);
 
     // iterate over rows and pull out available data
     if (itemRows.length < 1) {
       res.send(204, { error: "looks like this isn't a real page. I mean don't get me wrong. It's there, but there's no table on the page." });
     } else {
-      console.log("Extracting Data");
+      // console.log("Extracting Data");
       itemRows.each(function(i, el){
         var auction = {};
         var itemTH = $(el).children('th');
@@ -96,13 +96,13 @@ exports.searchAuctions = function(req, res){
   };  
   
   tidyPage = function(body) {
-    console.log("Cleaning Markup");
+    // console.log("Cleaning Markup");
     tidy(body, function(err, html) {
       if(err){  
         res.jsonp(err);
         return; 
       } else { 
-        console.log("Markup Cleaned");
+        // console.log("Markup Cleaned");
         scrapeItems(html);        
         // fs.writeFile('clean.html', html, function (err) {
         //   if (err) throw err;
@@ -118,7 +118,7 @@ exports.searchAuctions = function(req, res){
     if(error) {
       res.jsonp(error);
     } else {
-      console.log("Dirty HTML received");
+      // console.log("Dirty HTML received");
       tidyPage(body);
     }
   });
