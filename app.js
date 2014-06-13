@@ -12,7 +12,9 @@ app.listen(port, function() { console.log("Listening on " + port) });
 
 var getOptions = require('./searchOptions.js');
 var getAuctions = require('./searchAuctions.js');
+// var getOptions = require('./getAuction.js');
 app.get('/options', getOptions.searchOptions);
 app.get('/search', getAuctions.searchAuctions);
+// app.get('/auction', getAuction.getAuction);
 
 console.log("HEY HEY HEY HEY HEY HEY HEY HEY HEY HEY HEY HEY HEY HEY HEY");

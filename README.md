@@ -1,5 +1,44 @@
 # shopgooderwill
 
+#### feedback
+
+- Gaming Systems & Games ... http://www.shopgoodwill.com/listings/listByCat.asp?catID=33&ending=Items
+- Home Audio/Theater ... http://www.shopgoodwill.com/listings/listByCat.asp?catID=182&ending=Items
+- TVs ... http://www.shopgoodwill.com/listings/listByCat.asp?catID=180&ending=Items
+
+Computers & Electronics ... http://www.shopgoodwill.com/listings/listByCat.asp?catID=7
+  Car Audio ... http://www.shopgoodwill.com/listings/listByCat.asp?catID=366&ending=Items
+  Computers ... http://www.shopgoodwill.com/listings/listByCat.asp?catID=30&ending=Items
+    Accessories ... http://www.shopgoodwill.com/listings/listByCat.asp?catID=179&ending=Items
+    Desktops ... http://www.shopgoodwill.com/listings/listByCat.asp?catID=177&ending=Items
+    Laptops ... http://www.shopgoodwill.com/listings/listByCat.asp?catID=176&ending=Items
+      Apple Laptops ... http://www.shopgoodwill.com/listings/listByCat.asp?catID=370&ending=Items
+    Networking ... http://www.shopgoodwill.com/listings/listByCat.asp?catID=350&ending=Items
+    Peripherals ... http://www.shopgoodwill.com/listings/listByCat.asp?catID=178&ending=Items
+    Tablets ... http://www.shopgoodwill.com/listings/listByCat.asp?catID=365&ending=Items
+  Home Electronics ... http://www.shopgoodwill.com/listings/listByCat.asp?catID=32&ending=Items
+  
+  Personal Electronics ... http://www.shopgoodwill.com/listings/listByCat.asp?catID=183&ending=Items
+    Cell Phones & Accessories (327 items)
+    Digital Photo Frames (30 items)
+    eBook Readers (64 items)
+    GPS Devices (132 items)
+    Headphones (111 items)
+    MP3/CD Players & Accessories (234 items)
+    PDAs (18 items)
+    Portable DVD Players (68 items)
+    Radios (118 items)
+  Vintage Electronics ... http://www.shopgoodwill.com/listings/listByCat.asp?catID=431&ending=Items
+
+Musical Instruments ... http://www.shopgoodwill.com/listings/listByCat.asp?catID=13
+  Accessories ... http://www.shopgoodwill.com/listings/listByCat.asp?catID=192&ending=Items
+  Brass ... http://www.shopgoodwill.com/listings/listByCat.asp?catID=190&ending=Items
+  Electronic ... http://www.shopgoodwill.com/listings/listByCat.asp?catID=191&ending=Items
+  Other ... http://www.shopgoodwill.com/listings/listByCat.asp?catID=193&ending=Items
+  Percussion ... http://www.shopgoodwill.com/listings/listByCat.asp?catID=188&ending=Items
+  Strings ... http://www.shopgoodwill.com/listings/listByCat.asp?catID=187&ending=Items
+  Woodwinds ... http://www.shopgoodwill.com/listings/listByCat.asp?catID=189&ending=Items
+
 ### the unofficial API for gettin me some JSON
 
 I love shopgoodwill.com ... I just hate browsing the site. So I'm goofing around and making a better way to do just that.

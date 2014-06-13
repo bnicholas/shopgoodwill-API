@@ -4,6 +4,7 @@ var tidy    = require('htmltidy').tidy;
 var fs      = require('fs');
 var moment  = require('moment');
 
+
 exports.searchAuctions = function(req, res){
   var tidyPage;
   var queryCat = 0;
