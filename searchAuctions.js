@@ -8,14 +8,14 @@ var moment  = require('moment');
 exports.searchAuctions = function(req, res){
   var tidyPage;
   var queryCat = 0;
-  var querySeller = "";
+  var querySeller = "all";
   var queryPage = 1;
   var queryTerm = "";
 
   if(req.query.page) {
     queryPage = req.query.page;
   };
-  if(req.query.cat && req.query.cat !== "all") { 
+  if(req.query.cat) { 
     queryCat = req.query.cat;
   };
   if(req.query.seller) {
