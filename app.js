@@ -10,10 +10,12 @@ console.log("os.release "+os.release());
 
 app.listen(port, function() { console.log("Listening on " + port) });
 
-var getOptions = require('./searchOptions.js');
+var getSellers = require('./getSellers.js');
+var getCategories = require('./getCategories.js');
 var getAuctions = require('./searchAuctions.js');
 // var getOptions = require('./getAuction.js');
-app.get('/options', getOptions.searchOptions);
+app.get('/categories', getCategories.listCategories);
+app.get('/sellers', getSellers.listSellers);
 app.get('/search', getAuctions.searchAuctions);
 // app.get('/auction', getAuction.getAuction);
 
