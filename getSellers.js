@@ -27,7 +27,9 @@ exports.listSellers = function(req, res){
       sellerName = sellerName.slice(0, 2);
       sellerName = sellerName.join(" ");
       var sellerID = $(el).val();
-      sellersArray.push({name : sellerName, id : sellerID});
+      if(sellerID !== 'all') {
+        sellersArray.push({name : sellerName, id : sellerID});
+      };
     });
     res.jsonp(sellersArray);
 
