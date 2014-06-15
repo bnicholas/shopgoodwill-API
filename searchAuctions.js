@@ -1,12 +1,19 @@
-var cheerio = require('cheerio');
-var request = require('request');
-var tidy    = require('htmltidy').tidy;
-var fs      = require('fs');
-var moment  = require('moment');
+var cheerio   = require('cheerio');
+var request   = require('request');
+var tidy      = require('htmltidy').tidy;
+var fs        = require('fs');
+var moment    = require('moment');
+var sizeOf    = require('image-size');
+var url       = require('url');
+var http      = require('http');
+var imagesize = require('imagesize');
+
+
+// var dimesions = sizeOf('images/funny-cats.png');
 
 
 exports.searchAuctions = function(req, res){
-  var tidyPage;
+  var auctionsArray = [];
   var queryCat = 0;
   var querySeller = "all";
   var queryPage = 1;
@@ -38,8 +45,17 @@ exports.searchAuctions = function(req, res){
     }  
   };
   
+  var setImgSize = function(imgSrc) {
+    sizeOf(auction.itemImage, function (err, dimensions) {
+      return dimensions;
+      // auction.itemH = dimensions.height;
+      // auction.itemW = dimensions.width;
+      // auctionsArray.push(auction);
+      // console.log(dimensions.width, dimensions.height);
+    });
+  }
+
   var scrapeItems = function(html) {
-    var auctionsArray = [];
     
     // console.log("Parsing Markup");
     
@@ -53,50 +69,46 @@ exports.searchAuctions = function(req, res){
     // iterate over rows and pull out available data
     if (itemRows.length < 1) {
       res.send(204, { error: "looks like this isn't a real page. I mean don't get me wrong. It's there, but there's no table on the page." });
-    } else {
+    } 
+    else {
       // console.log("Extracting Data");
-      itemRows.each(function(i, el){
+      itemRows.each(function(i, el) {
         var auction = {};
         var itemTH = $(el).children('th');
-        // the unique auction number
         auction.itemNumber = itemTH.eq(0).html().trim();
-        // console.log(auction.itemNumber);
-        // the auction name
-        // console.log(auction.itemNumber);
         auction.itemName = itemTH.eq(1).children('a').html();
-        // remove any line breaks from auction name
         auction.itemName = auction.itemName.replace(/(\r\n|\n|\r)/gm,"");
-        // the auction show url
-        // console.log(auction.itemName);
         auction.itemURL = itemTH.eq(1).children('a').attr('href');
-        // the small thumbnail
-        // console.log(auction.itemURL);
         auction.itemImage = itemTH.eq(1).children('img').attr('src');
-        // the Larger image URL
         auction.itemImage = auction.itemImage.replace("-thumb","");
-        // the Current price
-        // console.log(auction.itemImage);
         auction.itemPrice = itemTH.eq(2).find('b').html();
-        // strip out the $ so it validates as a number
         auction.itemPrice = auction.itemPrice.replace("$","");
-        // console.log(auction.itemPrice);
-        // the number of bids
         auction.itemBids = itemTH.eq(3).html();
-        // console.log(auction.itemBids);
-        // the end time in words ... useless
         auction.itemEnd = itemTH.eq(4).html();
-        // auction.itemEnd = Date.parse(auction.itemEnd);
         auction.itemEnd = moment(auction.itemEnd, 'M/D/YYYY h:m:s a').fromNow();
-        // console.log(auction.itemEnd);
-        auctionsArray.push(auction);
-        // auctionsArray.push(auction);
-      });
-      var auctionsJson = JSON.stringify(auctionsArray);
-      res.jsonp(auctionsArray);      
-    };
-  };  
+        
+        var getImage = http.get(auction.itemImage, function (response) {
+          imagesize(response, function (err, result) {
+            auction.itemH = result.height;
+            auction.itemW = result.width;
+            auction.imageRatio = result.height/result.width;
+            // addAuction(auction, i, itemRows.length);
+            getImage.abort();
+            auctionsArray.push(auction);
+            if(itemRows.length === i+1) {
+              sendJSON();  
+            };
+          }); // end imagesize
+        }); // end getImage
+      }); // end itemRows.each
+    }; // end else
+  }; // end scrapeItems
   
-  tidyPage = function(body) {
+  var sendJSON = function() {
+    res.jsonp(auctionsArray);
+  };
+
+  var tidyPage = function(body) {
     // console.log("Cleaning Markup");
     tidy(body, function(err, html) {
       if(err){  
@@ -113,7 +125,7 @@ exports.searchAuctions = function(req, res){
     });
   };
   
-  console.log("Requesting Auctions");
+  // console.log("Requesting Auctions");
   
   request(url.full, function(error, response, body) {
     if(error) {

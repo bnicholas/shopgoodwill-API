@@ -11,8 +11,12 @@
     "consolidate": "^0.10.0",
     "express": "^4.1.2",
     "htmltidy": "git+https://github.com/bnicholas/htmltidy.git",
+    "http": "0.0.0",
+    "image-size": "^0.3.0",
+    "imagesize": "^1.0.0",
     "moment": "^2.6.0",
     "request": "^2.27.0",
+    "url": "^0.10.1",
     "utils-merge": "^1.0.0"
   }
 }

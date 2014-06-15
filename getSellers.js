@@ -4,7 +4,9 @@ var tidy = require('htmltidy').tidy;
 var searchUrl = "http://www.shopgoodwill.com/search/";
 
 exports.listSellers = function(req, res){
-
+  
+  var sellersArray = [];
+  
   request(searchUrl, function(err, resp, body) {
     if(!err) {
       tidy(body, function(error, html){
@@ -15,10 +17,9 @@ exports.listSellers = function(req, res){
     }
   });  
   
-  var sellersArray = [];
-
   var getSellers = function(html){
     $ = cheerio.load(html);
+    
     var sellerOptions = $('select#SellerID').children('option');
     
     sellerOptions.each(function(i, el){
