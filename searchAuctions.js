@@ -12,14 +12,22 @@ var http      = require('http');
 exports.searchAuctions = function(req, res){
   var auctionsArray = [];
   var queryCat = 0;
-  var querySeller = "all";
+  var querySeller = "12";
   var queryPage = 1;
   var queryTerm = "";
 
-  if(req.query.page) queryPage = req.query.page;
-  if(req.query.cat) queryCat = req.query.cat;
-  if(req.query.seller) querySeller = req.query.seller;
-  if(req.query.term) queryTerm = req.query.term;
+  if(req.query.page) { 
+    queryPage = req.query.page; 
+  };
+  if(req.query.cat) { 
+    queryCat = req.query.cat; 
+  };
+  if(req.query.seller) { 
+    querySeller = req.query.seller;
+  };
+  if(req.query.term) { 
+    queryTerm = req.query.term;
+  };
 
   var url = {
     base:   'http://www.shopgoodwill.com/search/searchKey.asp?showthumbs=on&sortBy=itemEndTime&closed=no&SortOrder=a&sortBy=itemEndTime&',
@@ -35,6 +43,7 @@ exports.searchAuctions = function(req, res){
   };
   
   var scrapeItems = function(html) {
+    //console.log(html);
     var $ = cheerio.load(html);
     // get a cheerio object array of the table rows
     var itemRows = $('table.productresults tbody').first().children('tr');
@@ -42,6 +51,7 @@ exports.searchAuctions = function(req, res){
 
     // iterate over rows and pull out available data
     if (itemRows.length < 1) {
+      console.log("less than");
       res.send(204, { error: "looks like this isn't a real page. I mean don't get me wrong. It's there, but there's no table on the page." });
     } 
     else {
@@ -61,6 +71,7 @@ exports.searchAuctions = function(req, res){
         auction.itemEnd = moment(auction.itemEnd, 'M/D/YYYY h:m:s a').fromNow();
         auctionsArray.push(auction);
         if(itemRows.length === i+1) {
+          console.log("sending JSON");
           sendJSON();  
         };
       }); // end itemRows.each

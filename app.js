@@ -1,7 +1,7 @@
 var express = require('express');
 var path    = require('path');
 var app     = express();
-var port    = process.env.PORT || 5000;
+var port    = process.env.PORT || 5050;
 var os      = require('os');
 
 console.log("os.platform "+os.platform());
@@ -16,7 +16,7 @@ var getAuctions = require('./searchAuctions.js');
 // var getOptions = require('./getAuction.js');
 app.get('/categories', getCategories.listCategories);
 app.get('/sellers', getSellers.listSellers);
-app.get('/search', getAuctions.searchAuctions);
+app.get('/auctions', getAuctions.searchAuctions);
 // app.get('/auction', getAuction.getAuction);
 
 console.log("HEY HEY HEY HEY HEY HEY HEY HEY HEY HEY HEY HEY HEY HEY HEY");
