@@ -29,7 +29,7 @@ exports.listSellers = function(req, res){
       sellerName = sellerName.join(" ");
       var sellerID = $(el).val();
       if(sellerID !== 'all') {
-        sellersArray.push({name : sellerName, id : sellerID});
+        sellersArray.push({sellerName : sellerName, sellerId : sellerID});
       };
     });
     res.jsonp(sellersArray);

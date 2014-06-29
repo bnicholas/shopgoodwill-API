@@ -1,7 +1,6 @@
 var cheerio   = require('cheerio');
 var request   = require('request');
 var tidy      = require('htmltidy').tidy;
-var fs        = require('fs');
 var moment    = require('moment');
 var url       = require('url');
 var http      = require('http');
@@ -9,7 +8,7 @@ var http      = require('http');
 // var sizeOf    = require('image-size');
 // var imagesize = require('imagesize');
 
-exports.searchAuctions = function(req, res){
+exports.listAuctions = function(req, res){
   var auctionsArray = [];
   var queryCat = 0;
   var querySeller = "12";
@@ -71,7 +70,7 @@ exports.searchAuctions = function(req, res){
         auction.itemEnd = moment(auction.itemEnd, 'M/D/YYYY h:m:s a').fromNow();
         auctionsArray.push(auction);
         if(itemRows.length === i+1) {
-          console.log("sending JSON");
+          // console.log("sending JSON");
           sendJSON();  
         };
       }); // end itemRows.each

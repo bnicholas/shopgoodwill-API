@@ -24,9 +24,10 @@ exports.listCategories = function(req, res){
     catOptions.each(function(i, el){
       var catName = $(el).html();
       var catID = $(el).val();
-      if(catName.indexOf("&gt;") < 0) {
-        categoriesArray.push({name : catName, id : catID});  
-      };
+      categoriesArray.push({catName : catName, catId : catID});
+      // if(catName.indexOf("&gt;") < 0) {
+      //   categoriesArray.push({name : catName, id : catID});  
+      // };
     });
     
     res.jsonp(categoriesArray);
