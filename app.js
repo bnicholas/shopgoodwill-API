@@ -9,10 +9,9 @@ app.listen(port, function() { console.log("Listening on " + port) });
 var getSellers    = require('./getSellers.js');
 var getCategories = require('./getCategories.js');
 var getAuctions   = require('./getAuctions.js');
-var getFavorites  = require('./getFavorites.js');
+var getItem  = require('./getItem.js');
 
 app.get('/categories', getCategories.listCategories);
 app.get('/sellers', getSellers.listSellers);
 app.get('/auctions', getAuctions.listAuctions);
-app.get('/favorites', getFavorites.listFavorites);
-
+app.get('/item', getItem.showAuction);

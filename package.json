@@ -1,22 +1,20 @@
 {
   "name": "goodwill-API",
   "version": "0.0.2",
+  "description": "",
+  "main": "app.js",
   "private": true,
-  "engines": {
-    "node": "0.10.28",
-    "npm": "1.4.13"
-  },
   "dependencies": {
-    "cheerio": "^0.15.0",
-    "consolidate": "^0.10.0",
-    "express": "^4.1.2",
+    "cheerio": "latest",
+    "consolidate": "latest",
+    "express": "latest",
     "htmltidy": "git+https://github.com/bnicholas/htmltidy.git",
-    "http": "0.0.0",
-    "image-size": "^0.3.0",
-    "imagesize": "^1.0.0",
-    "moment": "^2.6.0",
-    "request": "^2.27.0",
-    "url": "^0.10.1",
-    "utils-merge": "^1.0.0"
+    "http": "latest",
+    "image-size": "latest",
+    "imagesize": "latest",
+    "moment": "latest",
+    "request": "latest",
+    "url": "latest",
+    "utils-merge": "latest"
   }
 }

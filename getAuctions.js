@@ -15,16 +15,16 @@ exports.listAuctions = function(req, res){
   var queryPage = 1;
   var queryTerm = "";
 
-  if(req.query.page) { 
-    queryPage = req.query.page; 
+  if(req.query.page) {
+    queryPage = req.query.page;
   };
-  if(req.query.cat) { 
-    queryCat = req.query.cat; 
+  if(req.query.category) {
+    queryCat = req.query.category;
   };
-  if(req.query.seller) { 
+  if(req.query.seller) {
     querySeller = req.query.seller;
   };
-  if(req.query.term) { 
+  if(req.query.term) {
     queryTerm = req.query.term;
   };
 
@@ -38,9 +38,9 @@ exports.listAuctions = function(req, res){
     max:    null,
     get full () {
       return this.base+'itemTitle='+this.title+'&catid='+this.cat+'&sellerID='+this.seller+'&page='+this.page;
-    }  
+    }
   };
-  
+
   var scrapeItems = function(html) {
     //console.log(html);
     var $ = cheerio.load(html);
@@ -52,7 +52,7 @@ exports.listAuctions = function(req, res){
     if (itemRows.length < 1) {
       console.log("less than");
       res.send(204, { error: "looks like this isn't a real page. I mean don't get me wrong. It's there, but there's no table on the page." });
-    } 
+    }
     else {
       itemRows.each(function(i, el) {
         var auction = {};
@@ -71,12 +71,12 @@ exports.listAuctions = function(req, res){
         auctionsArray.push(auction);
         if(itemRows.length === i+1) {
           // console.log("sending JSON");
-          sendJSON();  
+          sendJSON();
         };
       }); // end itemRows.each
     }; // end else
   }; // end scrapeItems
-  
+
   var getImageSize = function() {
     var getImage = http.get(auction.itemImage, function (response) {
       imagesize(response, function (err, result) {
@@ -96,21 +96,22 @@ exports.listAuctions = function(req, res){
 
   var tidyPage = function(body) {
     tidy(body, function(err, html) {
-      if(err){  
+      if(err){
         res.jsonp(err);
-        return; 
-      } else { 
-        scrapeItems(html);        
+        return;
+      } else {
+        scrapeItems(html);
       }
     });
   };
-  
+
   request(url.full, function(error, response, body) {
     if(error) {
       console.log(error);
       res.jsonp(error);
     } else {
-      // console.log("Dirty HTML received");
+      console.log("Dirty HTML received");
+      console.log(url.full);
       tidyPage(body);
     }
   });
