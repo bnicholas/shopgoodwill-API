@@ -6,10 +6,12 @@ var os      = require('os');
 
 app.listen(port, function() { console.log("Listening on " + port) });
 
+app.use(allowCrossDomain);
+
 var getSellers    = require('./getSellers.js');
 var getCategories = require('./getCategories.js');
 var getAuctions   = require('./getAuctions.js');
-var getItem  = require('./getItem.js');
+var getItem       = require('./getItem.js');
 
 app.get('/', getAuctions.listAuctions);
 app.get('/auctions', getAuctions.listAuctions);
