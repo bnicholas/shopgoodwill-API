@@ -7,6 +7,7 @@
   "dependencies": {
     "cheerio": "0.20.0",
     "consolidate": "0.14.1",
+    "cors": "^2.7.1",
     "express": "4.13.4",
     "htmltidy": "git+https://github.com/bnicholas/htmltidy.git",
     "http": "latest",
