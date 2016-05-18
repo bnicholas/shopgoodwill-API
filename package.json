@@ -5,16 +5,16 @@
   "main": "app.js",
   "private": true,
   "dependencies": {
-    "cheerio": "latest",
-    "consolidate": "latest",
-    "express": "latest",
+    "cheerio": "0.20.0",
+    "consolidate": "0.14.1",
+    "express": "4.13.4",
     "htmltidy": "git+https://github.com/bnicholas/htmltidy.git",
     "http": "latest",
-    "image-size": "latest",
-    "imagesize": "latest",
-    "moment": "latest",
-    "request": "latest",
-    "url": "latest",
-    "utils-merge": "latest"
+    "image-size": "0.5.0",
+    "imagesize": "1.0.0",
+    "moment": "2.13.0",
+    "request": "2.72.0",
+    "url": "0.11.0",
+    "utils-merge": "1.0.0"
   }
 }

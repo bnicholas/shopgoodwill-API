@@ -51,7 +51,9 @@ exports.listAuctions = function(req, res){
     // iterate over rows and pull out available data
     if (itemRows.length < 1) {
       console.log("less than");
-      res.send(204, { error: "looks like this isn't a real page. I mean don't get me wrong. It's there, but there's no table on the page." });
+      // res.send(204, { error: "looks like this isn't a real page. I mean don't get me wrong. It's there, but there's no table on the page." });
+      res.status(204, { error: "looks like this isn't a real page. I mean don't get me wrong. It's there, but there's no table on the page." }).send(body);
+
     }
     else {
       itemRows.each(function(i, el) {
@@ -62,7 +64,12 @@ exports.listAuctions = function(req, res){
         auction.itemName = auction.itemName.replace(/(\r\n|\n|\r)/gm,"");
         auction.itemURL = itemTH.eq(1).children('a').attr('href');
         auction.itemImage = itemTH.eq(1).children('img').attr('src');
-        auction.itemImage = auction.itemImage.replace("-thumb","");
+        console.log(auction.itemImage);
+        if(auction.itemImage != undefined) {
+          auction.itemImage = auction.itemImage.replace("-thumb","");
+        } else {
+          console.log(auction.itemImage);
+        }
         auction.itemPrice = itemTH.eq(2).find('b').html();
         auction.itemPrice = auction.itemPrice.replace("$","");
         auction.itemBids = itemTH.eq(3).html();
